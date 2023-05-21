@@ -6,11 +6,11 @@ import cn from 'classnames'
 type PropsPaginator = {
     totalItemsCount:number
     pageSize:number
-    currentPage:number
-    onPageChange:(pageNumber:number)=>void
+    currentPage?:number
+    onPageChange?:(pageNumber:number)=>void
     potionSize?:number
 }
-let Paginator:React.FC<PropsPaginator> = ({totalItemsCount,pageSize,currentPage,onPageChange,potionSize=10}:PropsPaginator) => {
+let Paginator:React.FC<PropsPaginator> = ({totalItemsCount,pageSize,currentPage=1,onPageChange=()=>{},potionSize=10}:PropsPaginator) => {
 
     let pagesCount = Math.ceil(totalItemsCount / pageSize)
     let pages:Array<number> = [];

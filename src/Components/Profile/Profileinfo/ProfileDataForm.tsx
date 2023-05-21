@@ -1,10 +1,22 @@
 import React from "react";
-import {createField, } from "../../../Login/Login";
+import {createField, } from "../../../Login/LoginPage";
 import {Input, Textarea} from "../../common/FormsControls/FormsControls";
-import {reduxForm} from "redux-form";
+import {InjectedFormProps, reduxForm} from "redux-form";
 import s from "./Profileinfo.module.css";
+import {ProfileType} from "../../../types/types";
 
-const DataForm = ({error,profile,isOwner,handleSubmit}:any) => {
+type PropsDataFormType = {
+    error:string
+    profile:ProfileType
+    isOwner:boolean
+    handleSubmit:()=>void
+}
+type PropsType = {
+    profile:ProfileType
+    isOwner:boolean
+}
+type PropsDataFormTypeKeys = Extract<keyof ProfileType, string>
+const DataForm:React.FC<InjectedFormProps<PropsDataFormType,PropsType>&PropsType> = ({error,profile,isOwner,handleSubmit}) => {
 
 
 
@@ -15,14 +27,14 @@ const DataForm = ({error,profile,isOwner,handleSubmit}:any) => {
             <div><button >Save</button></div>}
 
         <div>
-            <b>Full name</b> : {createField(null,"FullName","fullName",[],Input )}
+            <b>Full name</b> : {createField<PropsDataFormTypeKeys>(null,"FullName","fullName",[],Input )}
         </div>
         <div>
-            <b>Looking for a job</b> :  {createField(null,"FullName","lookingForAJob",[],Input, {type:'checkbox'},)}
+            <b>Looking for a job</b> :  {createField<PropsDataFormTypeKeys>(null,"FullName","lookingForAJob",[],Input, {type:'checkbox'},)}
         </div>
 
             <div>
-                <b>My professional skills</b> :   {createField(null,"My professional skills","lookingForAJobDescription",[],Textarea, )}
+                <b>My professional skills</b> :   {createField<PropsDataFormTypeKeys>(null,"My professional skills","lookingForAJobDescription",[],Textarea, )}
             </div>
         <div>
             <b> About me </b>:  {createField(null,"About me","aboutMe",[],Textarea, )}
@@ -47,5 +59,5 @@ const DataForm = ({error,profile,isOwner,handleSubmit}:any) => {
         </div>
     </form>
 }
-const  ProfileDataForm = reduxForm({form:'edit-profile'})(DataForm)
+const  ProfileDataForm:any = reduxForm<PropsDataFormType,PropsType>({form:'edit-profile'})(DataForm)
 export default ProfileDataForm

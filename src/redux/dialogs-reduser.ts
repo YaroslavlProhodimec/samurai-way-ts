@@ -1,5 +1,6 @@
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY';
-const SEND_MASSAGE = 'SEND_MESSAGE';
+import {InferActionsTypes} from "./redux-store";
+
+
 type MessageType = {
     id:number
     message:string
@@ -28,14 +29,17 @@ let initialState = {
     ] as Array<DialogType>,
 }
 export type InitialStateType = typeof initialState
+type ActionsType = InferActionsTypes<typeof actions>
 
 
-const dialogsReduser = (state:InitialStateType = initialState, action: any):InitialStateType => {
 
-switch (action.type)  {
+const dialogsReduser = (state:InitialStateType = initialState, action: ActionsType):InitialStateType => {
 
 
-    case SEND_MASSAGE:
+    switch (action.type)  {
+
+
+    case 'SEND_MASSAGE':
         let body = action.updateNewPostText;
       return {
             ...state,
@@ -46,10 +50,9 @@ switch (action.type)  {
     return state;
 }
 }
-type SendMessageType = {
-    type: typeof SEND_MASSAGE
-    updateNewPostText : string
+export const actions = {
+    sendMessage : (updateNewPostText:string ) => ({type: 'SEND_MASSAGE',updateNewPostText}as const)
+
 }
-export let sendMessage = (updateNewPostText:string ):SendMessageType => ({type: SEND_MASSAGE,updateNewPostText})
 
 export default dialogsReduser

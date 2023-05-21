@@ -1,4 +1,5 @@
 .nav {
+    height: auto;
     background-color: blanchedalmond;
     grid-area: n;
     font-size: 20px;

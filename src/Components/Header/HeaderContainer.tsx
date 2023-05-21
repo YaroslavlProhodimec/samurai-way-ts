@@ -1,25 +1,21 @@
-import Header from "./Header";
+import Header, {DispatchPropsType, MapPropsType} from "./Header";
 import React from 'react';
-import axios, {AxiosResponse} from "axios";
 import {connect} from "react-redux";
-import { logout, } from "../../redux/auth-reducer";
+import {logout,} from "../../redux/auth-reducer";
+import {AppStateType} from "../../redux/redux-store";
 
-
-class HeaderContainer extends React.Component <any, any> {
-    // Ниже делаем запрос на сервер с  /auth/me чтобы законнектиться что мы залогинины
-    // вместе  с url указываем withCredentials : true это говорит о том что мы авторизованы
-    // В гет вторым параметром передается обьект с настройками withCredentials : true
-    //
-
+class HeaderContainer extends React.Component <MapPropsType & DispatchPropsType> {
     render() {
         return (
             <Header {...this.props}/>
         )
     }
 }
-const mapStateToProps = (state:any) =>( {
+const mapStateToProps = (state:AppStateType) =>( {
 isAuth: state.auth.isAuth,
-    login:state.auth.login
-})
+    login:state.auth.login,
 
-export default connect ((mapStateToProps),{logout}) (HeaderContainer)
+}as MapPropsType)
+
+export default connect <MapPropsType,DispatchPropsType,{},AppStateType>(
+    (mapStateToProps),{logout}) (HeaderContainer)

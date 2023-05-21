@@ -24,10 +24,13 @@ export type ProfileType = {
     fullName:string
     contacts:ContactsType
     photos:PhotosType
+    messages?:Array<string>
+    aboutMe:string
 }
 export type UserType = {
     id:number
     name:string
     status:string
     photos:PhotosType
+    followed:boolean
 }

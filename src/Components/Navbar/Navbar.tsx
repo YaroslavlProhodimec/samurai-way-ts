@@ -4,7 +4,7 @@ import s from './Navbar.module.css';
 
 //
 
-const Navbar = (props:any) => {
+const Navbar:React.FC = () => {
     return (
         < nav className={s.nav}>
 

@@ -2,37 +2,43 @@ import s from "./Users.module.css";
 import Vladik from "./Vladik.png";
 import React from "react";
 import {NavLink} from "react-router-dom";
+import {UserType} from "../../types/types";
 
 
+type PropsType = {
+    user:UserType
+        followingInProgress:Array<number>
+        unfollow:(userId:number)=>void
+        follow:(userId:number)=>void
+}
 
-
-let User = (props:any) => {
+export const User:React.FC<PropsType> = ({user,followingInProgress,unfollow,follow}) => {
 
 return (
         <div>
             <span>
                 <div className={s.flex}>
                 <div>
-                    <NavLink to={'/profile/' + props.user.id }>
-                    <img src={props.user.photos.small != null  ? props.user.photos.small : Vladik} className={s.img}  />
+                    <NavLink to={'/profile/' + user.id }>
+                    <img src={user.photos.small != null  ? user.photos.small : Vladik} className={s.img}  />
                     </NavLink>
                 </div>
 
                 <div>
 
-                   {props.user.followed
-                       ? <button disabled={props.followingInProgress.some((u: { id: any; })=>u === u.id)}
-                                 onClick={(e) =>{props.unfollow(props.user.id)}}> Unfollow </button>
-                       : <button disabled={props.followingInProgress.some((u: { id: any; })=>u === u.id)}
-                                 onClick={(e) => {props.follow(props.user.id)}}> Follow </button>}
+                   {user.followed
+                       ? <button disabled={followingInProgress.some((id:any)=>id === user.id)}
+                                 onClick={(e) =>{unfollow(user.id)}}> Unfollow </button>
+                       : <button disabled={followingInProgress.some((id:any)=>id === user.id)}
+                                 onClick={(e) => {follow(user.id)}}> Follow </button>}
                 </div>
                 </div>
 
             </span>
             <span>
                 <span>
-                <div>{props.user.name}</div>
-                    <div>{props.user.status}</div>
+                <div>{user.name}</div>
+                    <div>{user.status}</div>
                 </span>
             </span>
             {/*<div>{'u.location.country'}</div>*/}

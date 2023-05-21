@@ -6,16 +6,13 @@ import store from "./redux/redux-store";
 import React from "react";
 
 import {Provider} from "react-redux";
+import SamuraiJSApp from "./App";
 
 let rerenderEntireTree = (state: any) => {
 
 
     ReactDOM.render(
-        <BrowserRouter>
-            <Provider store={store} >
-                <App/>
-            </Provider>
-        </BrowserRouter>,
+        <SamuraiJSApp/>,
         document.getElementById('root')
     );
 }
