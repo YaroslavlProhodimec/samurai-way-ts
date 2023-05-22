@@ -4,7 +4,7 @@ import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import {ImageProfile} from "./ProfileImage";
 import s from './Profileinfo.module.css'
 import ProfileDataForm from "./ProfileDataForm";
-import {InjectedFormProps, reduxForm} from "redux-form";
+import {reduxForm} from "redux-form";
 import {ContactsType, ProfileType} from "../../../types/types";
 
 type PropsType = {
@@ -50,11 +50,11 @@ const Profileinfo: React.FC<PropsType> = ({profile, status, updateStatus, isOwne
                 {<div>
                     !isOwner &&
                     <input type={"file"} onChange={mainPhotoSelected}/>
-
                 </div>
 
                 }
-                {editMode ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}/>
+                {editMode
+                    ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}/>
                     : <ProfileData goToEditMode={() => {
                         setEditMode(true)
                     }} profile={profile} isOwner={isOwner}/>}

@@ -68,7 +68,7 @@ export const Users: React.FC = (props) => {
         const queryToString = new URLSearchParams(query)
 
         history.push({
-            pathname: '/users',
+            pathname: '/developers',
             search: queryToString.toString(),
         })
     }, [filter, currentPage])

@@ -8,7 +8,7 @@ import {getIsFetching,} from "../../redux/users-selectoors";
 type OwnPropsUserContainerType ={
    pageTitle:string
 }
-export const UsersPage:React.FC<OwnPropsUserContainerType> =
+ const UsersPage:React.FC<OwnPropsUserContainerType> =
     (props) => {
     const isFetching  = useSelector(getIsFetching)
     return <>
@@ -17,3 +17,4 @@ export const UsersPage:React.FC<OwnPropsUserContainerType> =
         <Users/>
     </>
 }
+export default UsersPage
