@@ -73,9 +73,7 @@ export const App: React.FC = () => {
                                   style={{height:'100%'}}
                             >
 
-
-
-                                    <div className={`${s.item} ${s.active}`}>
+                                <div className={`${s.item} ${s.active}`}>
                                        </div>
                                  <SubMenu key='sub1' icon={<UserOutlined rev={undefined} />} title='My Profile'>
                                      <Menu.Item key='1'><Link to='/profile' >Profile</Link></Menu.Item>
@@ -83,14 +81,14 @@ export const App: React.FC = () => {
 
 
                                  </SubMenu>
-                                <SubMenu key='sub1' icon={<UserOutlined rev={undefined} />} title='Developers'>
-                                    <Menu.Item key='1'> <Link to="/developers" >
+                                <SubMenu key='sub2' icon={<UserOutlined rev={undefined} />} title='Developers'>
+                                    <Menu.Item key='3'> <Link to="/developers" >
                                         Developers
                                     </Link></Menu.Item>
                                 </SubMenu>
-                                <SubMenu key='sub1' icon={<UserOutlined rev={undefined} />} title='Developers'>
-                                    <Menu.Item key='1'> <Link to="/chat" >
-                                        Chat
+                                <SubMenu key='sub3' icon={<UserOutlined rev={undefined} />} title='Chat'>
+                                    <Menu.Item key='4'> <Link to="/chat" >
+                                        Chat-Users
                                     </Link></Menu.Item>
                                 </SubMenu>
                             </Menu>
